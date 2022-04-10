@@ -1,0 +1,2408 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE Report
+[
+<!ELEMENT Report (General ,(Doc|BPT)) >
+<!ATTLIST Report ver CDATA #REQUIRED tmZone CDATA #REQUIRED>
+
+<!ELEMENT General ( DocLocation ) >
+<!ATTLIST General productName CDATA #REQUIRED productVer CDATA #REQUIRED os CDATA #REQUIRED host CDATA #REQUIRED qcserver CDATA #IMPLIED qcproject CDATA #IMPLIED SolManSolutionId CDATA #IMPLIED SolManProjectId CDATA #IMPLIED SolManTestPlanId CDATA #IMPLIED SolManTestPackageId CDATA #IMPLIED SolManUserInfoData CDATA #IMPLIED  >
+
+<!ELEMENT BPT (DName,Res,DVer?,TSet?,TInst?,NodeArgs,AdditionalInfo*,Doc*) >
+<!ATTLIST BPT rID ID #REQUIRED >
+
+<!ELEMENT Doc (DName,ConfName?,Res,DVer?,TSet?,TInst?,RunType?,DT?,AdditionalInfo*,Step*,DIter*,Step*,Action*,Doc*,Summary?,TestMaintenanceSummary*,NodeArgs?) >
+<!ATTLIST Doc rID ID #REQUIRED type (Test|BC|BPTWrapperTest|Flow|Group|Action) "Test" productName CDATA #REQUIRED BCIter CDATA #IMPLIED >
+
+<!ELEMENT RunType ( #PCDATA )>
+<!ATTLIST RunType fmStep (False|True) "False" batch (False|True) "False" upDesc (False|True) "False" upChk (False|True) "False" upAS (False|True) "False">
+
+<!ELEMENT DName ( #PCDATA ) >
+
+<!ELEMENT ConfName ( #PCDATA ) >
+
+<!ELEMENT Res ( #PCDATA ) >
+
+<!ELEMENT AdditionalInfo (AdditionalDataName,AdditionalDataValue ) >
+
+<!ELEMENT AdditionalDataName ( #PCDATA ) >
+
+<!ELEMENT AdditionalDataValue ( #PCDATA ) >
+
+<!ELEMENT DVer ( #PCDATA ) >
+
+<!ELEMENT TSet ( #PCDATA ) >
+
+<!ELEMENT TInst ( #PCDATA ) >
+
+<!ELEMENT DIter (Step*,Action+,Summary?,NodeArgs)>
+<!ATTLIST DIter rID ID #REQUIRED iterID CDATA #REQUIRED>
+
+<!ELEMENT DocLocation ( #PCDATA )>
+
+<!ELEMENT Action (AName,AIter*,(Step|HtmlStep|Action)*, Summary,ActionMaintenanceSummary*, NodeArgs ) >
+<!ATTLIST Action rID ID #REQUIRED>
+
+<!ELEMENT AIter ((Step|HtmlStep|Action)*,DataMapping?, Summary?,NodeArgs) >
+<!ATTLIST AIter rID ID #REQUIRED iterID CDATA #REQUIRED isCountable (False|True) "False" >
+
+<!ELEMENT AName ( #PCDATA ) >
+
+<!ELEMENT TestMaintenanceSummary (ActionMaintenanceSummary*) >
+<!ATTLIST TestMaintenanceSummary ObjectsAdded CDATA #REQUIRED ObjectsUpdated CDATA #REQUIRED StepsUpdated CDATA #REQUIRED StepsComments CDATA #REQUIRED><!ELEMENT ActionMaintenanceSummary (ObjectChange* ) >
+<!ATTLIST ActionMaintenanceSummary Action CDATA #REQUIRED Objects CDATA #REQUIRED Updated CDATA #REQUIRED LinesTotal CDATA #REQUIRED Added CDATA #REQUIRED LinesUpdated CDATA #REQUIRED>
+
+<!ELEMENT ObjectChange  (Hierarchy, PropertyChangeList* ) >
+<!ATTLIST ObjectChange Operation CDATA #IMPLIED OriginalRepository CDATA #IMPLIED>
+
+<!ELEMENT PropertyChangeList (PropertyDef*) >
+
+<!ELEMENT PropertyDef (OriginalValue, NewValue) >
+<!ATTLIST PropertyDef PropName CDATA #REQUIRED OriginRegularExpression (True|False) "False" NewRegularExpression (True|False) "False" AddedProperty (True|False) "False" >
+
+<!ELEMENT OriginalValue ( #PCDATA )>
+
+<!ELEMENT NewValue ( #PCDATA )>
+
+<!ELEMENT Hierarchy  (ObjectName, Hierarchy*) >
+<!ATTLIST Hierarchy MicClass CDATA #REQUIRED>
+
+<!ELEMENT ObjectName  ( #PCDATA ) >
+
+<!ELEMENT Step (Obj,Details,Time,TimeTick* ,(Step|HtmlStep|Doc)*, DataMapping?, NodeArgs) >
+<!ATTLIST Step rID ID #REQUIRED retval CDATA #IMPLIED>
+
+<!ELEMENT HtmlStep (HTML,TimeTick*,(Step|HtmlStep|Doc)*,NodeArgs) >
+<!ATTLIST HtmlStep rID ID #REQUIRED >
+
+<!ELEMENT Obj ( #PCDATA ) >
+<!ATTLIST Obj plainTxt (False|True) "True">
+
+<!ELEMENT Details ( #PCDATA ) >
+<!ATTLIST Details plainTxt (False|True) "True">
+
+<!ELEMENT Time ( #PCDATA ) >
+
+<!ELEMENT HTML ( #PCDATA ) >
+
+<!ELEMENT Disp ( #PCDATA ) >
+
+<!ELEMENT TimeTick ( #PCDATA ) >
+
+<!ELEMENT DataMapping ( DataMappedItem* )>
+<!ELEMENT DataMappedItem EMPTY >
+<!ATTLIST DataMappedItem dsName CDATA #REQUIRED >
+<!ATTLIST DataMappedItem rowId CDATA #REQUIRED >
+
+<!ELEMENT NodeArgs (Disp,TopPane?,BtmPane?,ExtendedInfo? )>
+<!ATTLIST NodeArgs eType CDATA #REQUIRED icon CDATA #REQUIRED nRep CDATA #REQUIRED UserNote CDATA #IMPLIED filter (False|True) "True">
+<!ATTLIST NodeArgs status (Passed|Failed|Done|Warning|Information) "Done">
+<!ATTLIST NodeArgs iconSel CDATA #IMPLIED nType CDATA #IMPLIED MovieMarker CDATA "">
+<!ATTLIST NodeArgs Source CDATA #IMPLIED SourceLine CDATA #IMPLIED StepFlowItemKey CDATA #IMPLIED >
+
+<!ELEMENT TopPane (Path)>
+
+<!ELEMENT BtmPane ( (Path|WR)?,ASHilite?)>
+<!ATTLIST BtmPane vType CDATA "HTML">
+
+<!ELEMENT Path ( #PCDATA ) >
+
+<!ELEMENT ASHilite ( #PCDATA ) >
+
+<!ELEMENT WR ( #PCDATA ) >
+
+<!ELEMENT ExtendedInfo ( StepData ) >
+
+<!ATTLIST ExtendedInfo StepType CDATA #REQUIRED>
+<!ELEMENT DT (NodeArgs) >
+<!ATTLIST DT rID ID #REQUIRED>
+
+<!ELEMENT Summary (Param*)>
+<!ATTLIST Summary sTime CDATA #IMPLIED eTime CDATA #IMPLIED passed CDATA #IMPLIED failed CDATA #IMPLIED warnings CDATA #IMPLIED retval CDATA #IMPLIED stopped (False|True) "False" >
+
+<!ELEMENT Param (ParamName,ParamVal)+ >
+<!ATTLIST Param paramInOut (In|Out) "In">
+
+<!ELEMENT ParamName ( #PCDATA ) >
+
+<!ELEMENT ParamVal ( #PCDATA ) >
+
+]
+>
+<Report ver="2.0" tmZone="India Standard Time">
+<General productName="HPE Unified Functional Testing" productVer="14.03" os="" host="LAPTOP-P330KRMQ"><DocLocation><![CDATA[E:\UFT Classbook PDF\Apollo (COVID-19)\HybridDrivenFramework\Driver\Driver_Covid19]]></DocLocation></General>
+<Doc rID="T1"   productName= "HPE Unified Functional Testing"  >
+<DName><![CDATA[Driver_Covid19]]></DName>
+<Res><![CDATA[Res101]]></Res>
+<DT rID="T2">
+<NodeArgs eType="Table" icon="2" nRep="4" filter="False" >
+<Disp><![CDATA[Run-Time Data Table]]></Disp>
+<BtmPane vType="Table" >
+<Path><![CDATA[Default.xls]]></Path>
+</BtmPane>
+</NodeArgs>
+</DT>
+<DIter rID="T3" iterID="1" >
+<Action rID="T4">
+<AName><![CDATA[Action1]]></AName>
+<Step rID="T5">
+<Obj plainTxt="False" ><![CDATA[SystemUtil]]></Obj>
+<Details plainTxt="False" ><![CDATA[SystemUtil]]></Details>
+<Time><![CDATA[05-04-2022 - 20:35:11]]></Time>
+<TimeTick>1649171111</TimeTick>
+<Step rID="T6">
+<Obj plainTxt="False" ><![CDATA[Run "C:\Program Files\Google\Chrome\Application\chrome.exe",1]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run "C:\Program Files\Google\Chrome\Application\chrome.exe",1]]></Details>
+<Time><![CDATA[05-04-2022 - 20:35:11]]></Time>
+<TimeTick>1649171111</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="11" status="Passed" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Run "C:\Program Files\Google\Chrome\Application\chrome.exe",1]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="5" nRep="10" status="Passed" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[SystemUtil]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T7">
+<Obj plainTxt="False" ><![CDATA[Apollo 247 - Online Doctor]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[05-04-2022 - 20:35:20]]></Time>
+<TimeTick>1649171120</TimeTick>
+<Step rID="T8">
+<Obj plainTxt="False" ><![CDATA[Apollo 247 - Online Doctor]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[05-04-2022 - 20:35:20]]></Time>
+<TimeTick>1649171120</TimeTick>
+<Step rID="T9">
+<Obj plainTxt="False" ><![CDATA[Covid-19]]></Obj>
+<Details plainTxt="False" ><![CDATA[Link]]></Details>
+<Time><![CDATA[05-04-2022 - 20:35:20]]></Time>
+<TimeTick>1649171120</TimeTick>
+<HtmlStep rID="T10">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Standard Checkpoint "Covid-19": </span><span class="FailedHigh">Failed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 05-04-2022 - 20:35:20</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+	<tr>
+		<td bgcolor="white">
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tr><td  class="hl3">Covid-19 Results&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Property Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Property Value&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<TD class="Text" Title="">href&nbsp;</TD>
+				<TD class="Passed" Title="">	<table border=0 width="100%%"><tr><td align=left bgcolor="#ffffff" title="Expected"><span class="Text">https://www.apollo247.com/blog&nbsp;</span></td> </tr>
+<tr><td align=left bgcolor="#c0c0c0" title="Actual"><span class="FailedLow">&nbsp;</span></td></tr></table>
+</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<TD class="Text" Title="">html tag&nbsp;</TD>
+				<TD class="Text" Title="">A&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<TD class="Text" Title="">innertext&nbsp;</TD>
+				<TD class="Text" Title="">Covid-19&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<TD class="Text" Title="">text&nbsp;</TD>
+				<TD class="Text" Title="">Covid-19&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body></html>]]></HTML>
+<TimeTick>1649171120</TimeTick>
+<NodeArgs eType="Verification" icon="8" nRep="16" status="Failed" >
+<Disp><![CDATA[Checkpoint "Covid-19"]]></Disp>
+<BtmPane vType="Mercury.SSHWeb" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf27.xml]]></Path>
+<ASHilite><![CDATA[10000000]]></ASHilite>
+</BtmPane>
+</NodeArgs>
+</HtmlStep>
+<NodeArgs eType="Context" icon="8" nRep="15" status="Failed" >
+<Disp><![CDATA[Covid-19]]></Disp>
+<BtmPane vType="Mercury.SSHWeb" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf26.xml]]></Path>
+<ASHilite><![CDATA[10000000]]></ASHilite>
+</BtmPane>
+</NodeArgs>
+</Step>
+<Step rID="T11">
+<Obj plainTxt="False" ><![CDATA[Covid-19.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[05-04-2022 - 20:35:21]]></Time>
+<TimeTick>1649171121</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="19" >
+<Disp><![CDATA[Covid-19.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="14" status="Failed" >
+<Disp><![CDATA[Apollo 247 - Online Doctor]]></Disp>
+<BtmPane vType="Mercury.SSHWeb" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf25.xml]]></Path>
+<ASHilite><![CDATA[10000000]]></ASHilite>
+</BtmPane>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="13" status="Failed" >
+<Disp><![CDATA[Apollo 247 - Online Doctor]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T12">
+<Obj plainTxt="False" ><![CDATA[Health Blogs Apollo 24|7]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[05-04-2022 - 20:35:26]]></Time>
+<TimeTick>1649171126</TimeTick>
+<Step rID="T13">
+<Obj plainTxt="False" ><![CDATA[Health Blogs Apollo 24|7]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[05-04-2022 - 20:35:26]]></Time>
+<TimeTick>1649171126</TimeTick>
+<HtmlStep rID="T14">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Standard Checkpoint "Health Blogs Apollo 24|7": </span><span class="FailedHigh">Failed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 05-04-2022 - 20:35:26</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+	<tr>
+		<td bgcolor="white">
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tr><td  class="hl3">Page Check&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Property Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Property Value&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td class="text">load time&nbsp;</td>
+				<TD class="Text" Title="">&quot;4&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">number of images&nbsp;</td>
+				<TD class="Text" Title="">&quot;71&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">number of links&nbsp;</td>
+				<TD class="Passed" Title="">	<table border=0 width="100%%"><tr><td align=left bgcolor="#ffffff" title="Expected"><span class="Text">&quot;106&quot;&nbsp;</span></td> </tr>
+<tr><td align=left bgcolor="#c0c0c0" title="Actual"><span class="FailedLow">&quot;105&quot;&nbsp;</span></td></tr></table>
+</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><td  class="hl3">Checking  the links captured addresses vs. the expected ones&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Link Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Url&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td class="text">Online Doctor Consultation &amp; Medicines&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Appointments&nbsp;</td>
+				<TD class="Passed" Title="">	<table border=0 width="100%%"><tr><td align=left bgcolor="#ffffff" title="Expected"><span class="Text">&nbsp;</span></td> </tr>
+<tr><td align=left bgcolor="#c0c0c0" title="Actual"><span class="FailedLow">Link does not exist&nbsp;</span></td></tr></table>
+</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Health Records&nbsp;</td>
+				<TD class="Passed" Title="">	<table border=0 width="100%%"><tr><td align=left bgcolor="#ffffff" title="Expected"><span class="Text">&nbsp;</span></td> </tr>
+<tr><td align=left bgcolor="#c0c0c0" title="Actual"><span class="FailedLow">Link does not exist&nbsp;</span></td></tr></table>
+</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Medicines&nbsp;</td>
+				<TD class="Passed" Title="">	<table border=0 width="100%%"><tr><td align=left bgcolor="#ffffff" title="Expected"><span class="Text">&nbsp;</span></td> </tr>
+<tr><td align=left bgcolor="#c0c0c0" title="Actual"><span class="FailedLow">Link does not exist&nbsp;</span></td></tr></table>
+</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Lab Tests&nbsp;</td>
+				<TD class="Passed" Title="">	<table border=0 width="100%%"><tr><td align=left bgcolor="#ffffff" title="Expected"><span class="Text">&nbsp;</span></td> </tr>
+<tr><td align=left bgcolor="#c0c0c0" title="Actual"><span class="FailedLow">Link does not exist&nbsp;</span></td></tr></table>
+</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Covid-19&nbsp;</td>
+				<TD class="Passed" Title="">	<table border=0 width="100%%"><tr><td align=left bgcolor="#ffffff" title="Expected"><span class="Text">&nbsp;</span></td> </tr>
+<tr><td align=left bgcolor="#c0c0c0" title="Actual"><span class="FailedLow">Link does not exist&nbsp;</span></td></tr></table>
+</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Can seasonal air pollution affect respiratory health?It can impact lung function. Read more&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/blog/article/can-seasonal-air-pollution-affect-respiratory-health&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Omicron Fact File: All You Need to KnowGet the latest information on the COVID-19 third wave in India.Read More&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/blog/article/omicron-fact-file-all-you-need-know&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">What's on Your Health Cards for 2022?Your health definitely looks good!Find Out Here&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/blog/article/health-calendar-2022&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">How to deal with sneezing and other winter allergiesTake care of your health this winter.Read more&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/blog/article/how-deal-sniffing-sneezing-and-other-winter-allergies&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Can seasonal air pollution affect respiratory health?It can impact lung function. Read more&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/blog/article/can-seasonal-air-pollution-affect-respiratory-health&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Omicron Fact File: All You Need to KnowGet the latest information on the COVID-19 third wave in India.Read More&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/blog/article/omicron-fact-file-all-you-need-know&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">What's on Your Health Cards for 2022?Your health definitely looks good!Find Out Here&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/blog/article/health-calendar-2022&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">How to deal with sneezing and other winter allergiesTake care of your health this winter.Read more&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/blog/article/how-deal-sniffing-sneezing-and-other-winter-allergies&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Can seasonal air pollution affect respiratory health?It can impact lung function. Read more&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/blog/article/can-seasonal-air-pollution-affect-respiratory-health&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">COVID-19 Scanner&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/covid19/scan/&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/covid19/scan/&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Health Tools&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/blog/health-tools&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/blog/health-tools&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Vaccine Updates&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/covid-vaccine-update/&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/covid-vaccine-update/&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Top 5 Health Drinks for SummerBy Apollo 24|7, Published on 05 April 2022&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/blog/article/top-5-health-drinks-summer&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">editor&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/blog/article/top-5-health-drinks-summer&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Which Is The Best Oil For Cooking?By Apollo 24|7, Published on 04 April 2022&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/blog/article/best-oil-for-cooking&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">editor&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/blog/article/best-oil-for-cooking&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">What Causes Heat Stroke?By Apollo 24|7, Published on 28 March 2022&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/blog/article/what-causes-heat-stroke&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">editor&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/blog/article/what-causes-heat-stroke&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Weight ManagementWhat Is Water Retention: Ways To Lose Water WeightWater retention can cause weight gain, bloating, swelling, and stiffness in joints. Here are the ways to get rid of water weight effectively. &nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/blog/article/how-can-i-lose-water-weight&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">General HealthTop 5 Health Drinks for SummerSummer is here and so is the scorching heat. Read to know 5 health drinks to keep dehydration and fatigue at bay. &nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/blog/article/top-5-health-drinks-summer&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">General HealthWhich Is The Best Oil For Cooking?Your cooking oil can affect your health adversely. Read to know which oil is best for cooking. &nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/blog/article/best-oil-for-cooking&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Healthcare EssentialsA Guide On Choosing The Best Shampoo For Your HairChoosing the right kind of shampoo for your hair can be a hassle. Read to know which shampoo is best to make your locks healthy and lustrous. &nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/blog/article/best-shampoo-for-your-hair&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">General Health5 Tips to Get Rid of Body Odour This SummerBody odour is one of the most prevalent problems during summer. However, diet modification, hygiene management, and the use of antiperspirants can help deal with it.&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/blog/article/tips-to-get-rid-of-body-odour&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Special DaysPrevention of Blindness Week: Can Glaucoma Make You Blind?People suffering from glaucoma may not develop severe symptoms in the early stages. However, if left untreated, it can lead to blindness. &nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/blog/article/can-glaucoma-make-you-blind&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Special DaysWorld Autism Awareness Day: All You Need To Know About This DisorderAutism is a developmental disorder that can affect a child's ability to learn, communicate, and understand. However, therapy and medication can help manage the symptoms effectively. &nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/blog/article/world-autism-awareness-day-all-you-need-know&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">General HealthWhat Causes Heat Stroke?Exposure to extremely hot weather can result in a heat stroke. It can be life-threatening, therefore requires immediate treatment. &nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/blog/article/what-causes-heat-stroke&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Special DaysWorld Tuberculosis Day - Everything You Need to Know About TBTB is an infectious disease that mainly affects the lungs and can be life-threatening. However, it can be successfully cured if diagnosed and treated properly on time.&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/blog/article/world-tuberculosis-day-everything-you-need-know-about-tb&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">COVID-19 VaccinesTop things you should know about Corbevax: The COVID-19 Vaccine for kidsCorbevax is a safe and effective COVID-19 vaccine that can be administered to kids in the age group of 12 to 14 years to protect them against the contagious coronavirus. &nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/blog/article/top-things-about-corbevax-covid-19-vaccine-for-kids&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Online Doctor Consultation &amp; Medicines&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">About Us&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/AboutUs&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Contact Us / Grievance&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/contact&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">FAQs&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/faq&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Health Queries&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/health-queries&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Terms and Conditions&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/terms&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Returns Policy &nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/returns&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Refund Policy&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/refund-policy&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Privacy Policy&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/privacy&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Apollo 247 Android App&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://play.google.com/store/apps/details?id=com.apollo.patientapp&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Apollo 247 iOS App&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://apps.apple.com/in/app/apollo-247/id1496740273&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Apollo 247 Sitemap&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/static/sitemap&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Online Doctor App&nbsp;</td>
+				<TD class="Text" Title="">&quot;http://onelink.to/qtv8we&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Online Medicine App&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://play.google.com/store/apps/details?id=com.apollo.patientapp&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Apollo Pharmacy&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollopharmacy.in/&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Hospitals And Clinics&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/hospitals-and-clinics&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Blogs&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/blog&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Online Doctor Consultation&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/specialties&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Apollo Circle Membership&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/circle&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Online Medicines&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/medicines&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Project Kavach&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/covid19/kavach&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Cough Scanner&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/covid19/cough-scan/&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Covid Vaccine Tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/covid-vaccine-tracker/&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Covid Vaccine Update&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/covid-vaccine-update/&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Apollo Pro Health Program&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/apollo-pro-health&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Doctors by Specialty&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/static/specialties-sitemap/1&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Doctors by City&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/static/city-doctors-sitemap/1&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">All Doctors List&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/static/doctors-sitemap/1&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Covid Consultation&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/specialties/covid-consultation&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Consult Physicians&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/specialties/general-physician-internal-medicine&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Consult Dermatologists&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/specialties/dermatology&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Consult Paediatricians&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/specialties/paediatrics&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Consult Gynaecologists&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/specialties/obstetrics-and-gynaecology&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Consult Gastroenterologists&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/specialties/gastroenterology-gi-medicine&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Consult Cardiologists&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/specialties/cardiology&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Consult Dietitians&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/specialties/dietetics&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Consult ENT Specialists&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/specialties/ent&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Consult Geriatricians&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/specialties/geriatrics&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Consult Diabetologists&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/specialties/diabetology&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">RT PCR Test At Home&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/lab-tests/covid-19-rt-pcr-with-home-collection&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Book Lab Tests at Home&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/lab-tests&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Renal Profile (KFT, RFT Test)&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/lab-tests/renal-profile-renal-function-test-rft-kft&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Hemogram Test&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/lab-tests/hemogram&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Lipid Profile Test&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/lab-tests/lipid-profile&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Thyroid Profile Test (T3 T4 Tsh Test)&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/lab-tests/free-and-total-thyroid-profile-t3-t4-ft3-ft4-tsh&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">D Dimer Test&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/lab-tests/d-dimer&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Urine Culture Test&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/lab-tests/culture-and-sensitivity-urine&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Complete Blood Count (CBC Test)&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/lab-tests/complete-blood-count-cbc&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Widal Test&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/lab-tests/widal-test-slide-method&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Liver Function Test (LFT Test)&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/lab-tests/liver-function-test-lft-with-ggt&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">View All Brands&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollopharmacy.in/brands&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Health Care&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollopharmacy.in/shop-by-category/health-care&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Personal Care&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollopharmacy.in/shop-by-category/personal-care&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Baby Care&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollopharmacy.in/shop-by-category/mom-baby&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Nutrition&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollopharmacy.in/shop-by-category/nutrition&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Healthcare Devices&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollopharmacy.in/shop-by-category/healthcare-devices&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Beauty Skin Care&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollopharmacy.in/shop-by-health-conditions/beauty-skin-care&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Immunity Boosters&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollopharmacy.in/shop-by-health-conditions/cold-immunity&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Coronavirus Prevention&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollopharmacy.in/shop-by-health-conditions/coronavirus-prevention&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Diabetes Care&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollopharmacy.in/shop-by-health-conditions/diabetic&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Patanjali Coronil Kit&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollopharmacy.in/otc/patanjali-divya-swasari-coronil-kit&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Mamaearth Products&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollopharmacy.in/shop-by-brand/mamaearth&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Apollo Hospital Jubilee Hills&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/hospital/apollo-hospital-jubilee-hills-in-hyderabad-d8d558b6-4221-4696-8404-416da1ec065a&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Apollo Hospitals Greams Road&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/hospital/apollo-hospitals-greams-road-in-chennai-7fc430f1-249f-4440-81b4-9d0e3c4565f7&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Indraprastha Apollo Hospital&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/hospital/indraprastha-apollo-hospital-in-delhi-34de0a1c-6155-4676-8370-ce48b7653a1e&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Apollo Hospitals Bannerghatta Road&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/hospital/apollo-hospitals-bannerghatta-road-in-bangalore-9ad12fd0-53af-43da-b85d-69305b4be791&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Apollo Hopsital - Belapur, Navi Mumbai&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/hospital/apollo-hopsital-belapur-navi-mumbai-in-mumbai-0eb94136-ab23-4a12-9f4b-69fd367b8ff1&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Apollo Hospitals Canal Circular Road&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/hospital/apollo-hospitals-canal-circular-road-in-kolkata-2fdb5332-6678-4fbb-bfd2-6ca6f77cfbcb&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Online Doctor Consultation &amp; Medicines&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><td  class="hl3">Checking  the images captured addresses vs. the expected ones&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Image Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Source&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td class="text">Online Doctor Consultation &amp; Medicines&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/images/ic_logo.png&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">location-img&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/images/location-icon.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-02/ic_riskscanner.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-08/Group%2017715%20(1).svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-02/ic_symptomchecker.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-03/Mental%20Health%20(1)_0.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-11/Oral%20Care%20svg.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-06/ic_orthopedics-1_0.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-02/ic_lungs.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-12/sexual%20wellness%20(1).svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-08/Weight%20Management%20category%20icon.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2022-03/ayurveda.png&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-02/coronavirus%20(1)%201_0.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-02/025%20%20%20Vaccine.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-02/ic_diabetes_0.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-02/ic_digestive.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-07/General%20Health%20Icon.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2022-02/Healthcare%20_essentials_1.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-02/ic_heart.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-03/Mental%20Health%20(1)_0.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-11/Oral%20Care%20svg.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-06/ic_orthopedics-1_0.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-02/ic_lungs.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-12/sexual%20wellness%20(1).svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-08/Weight%20Management%20category%20icon.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2022-03/ayurveda.png&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-02/coronavirus%20(1)%201_0.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-02/025%20%20%20Vaccine.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-02/ic_diabetes_0.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-02/ic_digestive.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-07/General%20Health%20Icon.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2022-02/Healthcare%20_essentials_1.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-02/ic_heart.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-03/Mental%20Health%20(1)_0.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-11/Oral%20Care%20svg.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-06/ic_orthopedics-1_0.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-02/ic_lungs.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-12/sexual%20wellness%20(1).svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-08/Weight%20Management%20category%20icon.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">editor&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2022-04/healthdrinks_blog.jpg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">editor&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2022-04/cookingoil_blog.jpg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">editor&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2022-03/heatstroke_blog.jpg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">COPD-0&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-08/COPD-0.jpg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Skin-11&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-08/Skin-11.jpg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Tea-10&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-08/Tea-10.jpg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Salad-0&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-07/Salad-0.jpg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Indoors-11&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-07/Indoors-11.jpg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Iron-10&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-10/Iron-10.jpg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Heart-0&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-09/Heart-0.jpg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Insomnia-1&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-09/Insomnia-1.jpg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Snore-10&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-09/Snore-10.jpg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">sugarfeatured&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-09/sugarfeatured.jpg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Burn-0&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-08/Burn-0.jpg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">COPD-0&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-08/COPD-0.jpg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Skin-11&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-08/Skin-11.jpg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Tea-10&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-08/Tea-10.jpg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Salad-0&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-07/Salad-0.jpg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Indoors-11&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-07/Indoors-11.jpg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Iron-10&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-10/Iron-10.jpg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Heart-0&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-09/Heart-0.jpg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Insomnia-1&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-09/Insomnia-1.jpg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Snore-10&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-09/Snore-10.jpg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">sugarfeatured&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-09/sugarfeatured.jpg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Burn-0&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-08/Burn-0.jpg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">COPD-0&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-08/COPD-0.jpg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Skin-11&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-08/Skin-11.jpg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Tea-10&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-08/Tea-10.jpg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Salad-0&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-07/Salad-0.jpg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Indoors-11&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/cms/2021-07/Indoors-11.jpg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Online Doctor Consultation &amp; Medicines&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/images/ic_logo.png&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Online Doctor Consultation &amp; Medicines&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/images/ic_logo.png&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body></html>]]></HTML>
+<TimeTick>1649171126</TimeTick>
+<NodeArgs eType="Verification" icon="7" nRep="23" status="Failed" >
+<Disp><![CDATA[Checkpoint "Health Blogs Apollo 24|7"]]></Disp>
+<BtmPane vType="Mercury.SSHWeb" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf29.xml]]></Path>
+<ASHilite><![CDATA[10000000]]></ASHilite>
+</BtmPane>
+</NodeArgs>
+</HtmlStep>
+<Step rID="T15">
+<Obj plainTxt="False" ><![CDATA[COVID-19 Scanner]]></Obj>
+<Details plainTxt="False" ><![CDATA[Link]]></Details>
+<Time><![CDATA[05-04-2022 - 20:35:27]]></Time>
+<TimeTick>1649171127</TimeTick>
+<HtmlStep rID="T16">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Standard Checkpoint "COVID-19 Scanner": </span><span class="PassedHigh">Passed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 05-04-2022 - 20:35:27</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+	<tr>
+		<td bgcolor="white">
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tr><td  class="hl3">COVID-19 Scanner Results&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Property Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Property Value&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<TD class="Text" Title="">href&nbsp;</TD>
+				<TD class="Text" Title="">https://www.apollo247.com/covid19/scan/&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<TD class="Text" Title="">html tag&nbsp;</TD>
+				<TD class="Text" Title="">A&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<TD class="Text" Title="">innertext&nbsp;</TD>
+				<TD class="Text" Title="">COVID-19 Scanner&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<TD class="Text" Title="">text&nbsp;</TD>
+				<TD class="Text" Title="">COVID-19 Scanner&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body></html>]]></HTML>
+<TimeTick>1649171127</TimeTick>
+<NodeArgs eType="Verification" icon="8" nRep="26" status="Passed" >
+<Disp><![CDATA[Checkpoint "COVID-19 Scanner"]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<NodeArgs eType="Context" icon="8" nRep="25" status="Passed" >
+<Disp><![CDATA[COVID-19 Scanner]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T17">
+<Obj plainTxt="False" ><![CDATA[Health Tools]]></Obj>
+<Details plainTxt="False" ><![CDATA[Link]]></Details>
+<Time><![CDATA[05-04-2022 - 20:35:27]]></Time>
+<TimeTick>1649171127</TimeTick>
+<HtmlStep rID="T18">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Standard Checkpoint "Health Tools": </span><span class="PassedHigh">Passed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 05-04-2022 - 20:35:27</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+	<tr>
+		<td bgcolor="white">
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tr><td  class="hl3">Health Tools Results&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Property Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Property Value&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<TD class="Text" Title="">href&nbsp;</TD>
+				<TD class="Text" Title="">https://www.apollo247.com/blog/health-tools&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<TD class="Text" Title="">html tag&nbsp;</TD>
+				<TD class="Text" Title="">A&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<TD class="Text" Title="">innertext&nbsp;</TD>
+				<TD class="Text" Title="">Health Tools&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<TD class="Text" Title="">text&nbsp;</TD>
+				<TD class="Text" Title="">Health Tools&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body></html>]]></HTML>
+<TimeTick>1649171127</TimeTick>
+<NodeArgs eType="Verification" icon="8" nRep="29" status="Passed" >
+<Disp><![CDATA[Checkpoint "Health Tools"]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<NodeArgs eType="Context" icon="8" nRep="28" status="Passed" >
+<Disp><![CDATA[Health Tools]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T19">
+<Obj plainTxt="False" ><![CDATA[Vaccine Updates]]></Obj>
+<Details plainTxt="False" ><![CDATA[Link]]></Details>
+<Time><![CDATA[05-04-2022 - 20:35:27]]></Time>
+<TimeTick>1649171127</TimeTick>
+<HtmlStep rID="T20">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Standard Checkpoint "Vaccine Updates": </span><span class="PassedHigh">Passed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 05-04-2022 - 20:35:27</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+	<tr>
+		<td bgcolor="white">
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tr><td  class="hl3">Vaccine Updates Results&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Property Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Property Value&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<TD class="Text" Title="">href&nbsp;</TD>
+				<TD class="Text" Title="">https://www.apollo247.com/covid-vaccine-update/&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<TD class="Text" Title="">html tag&nbsp;</TD>
+				<TD class="Text" Title="">A&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<TD class="Text" Title="">innertext&nbsp;</TD>
+				<TD class="Text" Title="">Vaccine Updates&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<TD class="Text" Title="">text&nbsp;</TD>
+				<TD class="Text" Title="">Vaccine Updates&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body></html>]]></HTML>
+<TimeTick>1649171127</TimeTick>
+<NodeArgs eType="Verification" icon="8" nRep="32" status="Passed" >
+<Disp><![CDATA[Checkpoint "Vaccine Updates"]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<NodeArgs eType="Context" icon="8" nRep="31" status="Passed" >
+<Disp><![CDATA[Vaccine Updates]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T21">
+<Obj plainTxt="False" ><![CDATA[Editor’s Pick]]></Obj>
+<Details plainTxt="False" ><![CDATA[WebElement]]></Details>
+<Time><![CDATA[05-04-2022 - 20:35:27]]></Time>
+<TimeTick>1649171127</TimeTick>
+<HtmlStep rID="T22">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Standard Checkpoint "Editor’s Pick": </span><span class="PassedHigh">Passed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 05-04-2022 - 20:35:27</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+	<tr>
+		<td bgcolor="white">
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tr><td  class="hl3">Editor’s Pick Results&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Property Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Property Value&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<TD class="Text" Title="">html tag&nbsp;</TD>
+				<TD class="Text" Title="">H1&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<TD class="Text" Title="">innertext&nbsp;</TD>
+				<TD class="Text" Title="">Editor’s Pick&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body></html>]]></HTML>
+<TimeTick>1649171127</TimeTick>
+<NodeArgs eType="Verification" icon="9" nRep="35" status="Passed" >
+<Disp><![CDATA[Checkpoint "Editor’s Pick"]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<NodeArgs eType="Context" icon="9" nRep="34" status="Passed" >
+<Disp><![CDATA[Editor’s Pick]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T23">
+<Obj plainTxt="False" ><![CDATA[Visual Stories]]></Obj>
+<Details plainTxt="False" ><![CDATA[WebElement]]></Details>
+<Time><![CDATA[05-04-2022 - 20:35:27]]></Time>
+<TimeTick>1649171127</TimeTick>
+<HtmlStep rID="T24">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Standard Checkpoint "Visual Stories": </span><span class="PassedHigh">Passed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 05-04-2022 - 20:35:27</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+	<tr>
+		<td bgcolor="white">
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tr><td  class="hl3">Visual Stories Results&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Property Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Property Value&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<TD class="Text" Title="">html tag&nbsp;</TD>
+				<TD class="Text" Title="">H1&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<TD class="Text" Title="">innertext&nbsp;</TD>
+				<TD class="Text" Title="">Visual Stories&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body></html>]]></HTML>
+<TimeTick>1649171127</TimeTick>
+<NodeArgs eType="Verification" icon="9" nRep="38" status="Passed" >
+<Disp><![CDATA[Checkpoint "Visual Stories"]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<NodeArgs eType="Context" icon="9" nRep="37" status="Passed" >
+<Disp><![CDATA[Visual Stories]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T25">
+<Obj plainTxt="False" ><![CDATA[Latest Articles]]></Obj>
+<Details plainTxt="False" ><![CDATA[WebElement]]></Details>
+<Time><![CDATA[05-04-2022 - 20:35:27]]></Time>
+<TimeTick>1649171127</TimeTick>
+<HtmlStep rID="T26">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Standard Checkpoint "Latest Articles": </span><span class="PassedHigh">Passed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 05-04-2022 - 20:35:27</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+	<tr>
+		<td bgcolor="white">
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tr><td  class="hl3">Latest Articles Results&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Property Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Property Value&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<TD class="Text" Title="">html tag&nbsp;</TD>
+				<TD class="Text" Title="">H1&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<TD class="Text" Title="">innertext&nbsp;</TD>
+				<TD class="Text" Title="">Latest Articles&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body></html>]]></HTML>
+<TimeTick>1649171127</TimeTick>
+<NodeArgs eType="Verification" icon="9" nRep="41" status="Passed" >
+<Disp><![CDATA[Checkpoint "Latest Articles"]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<NodeArgs eType="Context" icon="9" nRep="40" status="Passed" >
+<Disp><![CDATA[Latest Articles]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T27">
+<Obj plainTxt="False" ><![CDATA[COVID-19 Scanner]]></Obj>
+<Details plainTxt="False" ><![CDATA[WebElement]]></Details>
+<Time><![CDATA[05-04-2022 - 20:35:32]]></Time>
+<TimeTick>1649171132</TimeTick>
+<HtmlStep rID="T28">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Standard Checkpoint "COVID-19 Scanner_2": </span><span class="PassedHigh">Passed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 05-04-2022 - 20:35:32</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+	<tr>
+		<td bgcolor="white">
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tr><td  class="hl3">COVID-19 Scanner_2 Results&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Property Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Property Value&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<TD class="Text" Title="">html tag&nbsp;</TD>
+				<TD class="Text" Title="">P&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<TD class="Text" Title="">innertext&nbsp;</TD>
+				<TD class="Text" Title="">COVID-19 Scanner&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body></html>]]></HTML>
+<TimeTick>1649171132</TimeTick>
+<NodeArgs eType="Verification" icon="9" nRep="44" status="Passed" >
+<Disp><![CDATA[Checkpoint "COVID-19 Scanner_2"]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<NodeArgs eType="Context" icon="9" nRep="43" status="Passed" >
+<Disp><![CDATA[COVID-19 Scanner]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T29">
+<Obj plainTxt="False" ><![CDATA[COVID-19 Scanner.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[05-04-2022 - 20:35:32]]></Time>
+<TimeTick>1649171132</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="47" >
+<Disp><![CDATA[COVID-19 Scanner.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="22" status="Failed" >
+<Disp><![CDATA[Health Blogs Apollo 24|7]]></Disp>
+<BtmPane vType="Mercury.SSHWeb" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf28.xml]]></Path>
+<ASHilite><![CDATA[10000000]]></ASHilite>
+</BtmPane>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="21" status="Failed" >
+<Disp><![CDATA[Health Blogs Apollo 24|7]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T30">
+<Obj plainTxt="False" ><![CDATA[COVID-19 Risk Assessment]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[05-04-2022 - 20:35:34]]></Time>
+<TimeTick>1649171134</TimeTick>
+<Step rID="T31">
+<Obj plainTxt="False" ><![CDATA[COVID-19 Risk Assessment]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[05-04-2022 - 20:35:34]]></Time>
+<TimeTick>1649171134</TimeTick>
+<HtmlStep rID="T32">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Standard Checkpoint "COVID-19 Risk Assessment Scanner powered by Apollo 24|7": </span><span class="PassedHigh">Passed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 05-04-2022 - 20:35:34</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+	<tr>
+		<td bgcolor="white">
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tr><td  class="hl3">Page Check&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Property Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Property Value&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td class="text">load time&nbsp;</td>
+				<TD class="Text" Title="">&quot;1&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">number of images&nbsp;</td>
+				<TD class="Text" Title="">&quot;2&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">number of links&nbsp;</td>
+				<TD class="Text" Title="">&quot;2&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><td  class="hl3">Checking  the links captured addresses vs. the expected ones&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Link Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Url&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td class="text">Apollo 24|7&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://apollo247.com/&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Apollo 24|7&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://apollo247.com/&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><td  class="hl3">Checking  the images captured addresses vs. the expected ones&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Image Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Source&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td class="text">Apollo 24|7&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/covid19/scan/static/assets/images/logo.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Apollo 24|7&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/covid19/scan/static/assets/images/logo.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body></html>]]></HTML>
+<TimeTick>1649171134</TimeTick>
+<NodeArgs eType="Verification" icon="7" nRep="51" status="Passed" >
+<Disp><![CDATA[Checkpoint "COVID-19 Risk Assessment Scanner powered by Apollo 24|7"]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<Step rID="T33">
+<Obj plainTxt="False" ><![CDATA[SystemUtil]]></Obj>
+<Details plainTxt="False" ><![CDATA[SystemUtil]]></Details>
+<Time><![CDATA[05-04-2022 - 20:35:37]]></Time>
+<TimeTick>1649171137</TimeTick>
+<Step rID="T34">
+<Obj plainTxt="False" ><![CDATA[Run "C:\Program Files\Google\Chrome\Application\chrome.exe",1]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run "C:\Program Files\Google\Chrome\Application\chrome.exe",1]]></Details>
+<Time><![CDATA[05-04-2022 - 20:35:37]]></Time>
+<TimeTick>1649171137</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="55" status="Passed" >
+<Disp><![CDATA[Run "C:\Program Files\Google\Chrome\Application\chrome.exe",1]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="5" nRep="54" status="Passed" >
+<Disp><![CDATA[SystemUtil]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="50" status="Passed" >
+<Disp><![CDATA[COVID-19 Risk Assessment]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="49" status="Passed" >
+<Disp><![CDATA[COVID-19 Risk Assessment]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T35">
+<Obj plainTxt="False" ><![CDATA[Health Blogs Apollo 24|7]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[05-04-2022 - 20:35:38]]></Time>
+<TimeTick>1649171138</TimeTick>
+<Step rID="T36">
+<Obj plainTxt="False" ><![CDATA[Health Blogs Apollo 24|7]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[05-04-2022 - 20:35:38]]></Time>
+<TimeTick>1649171138</TimeTick>
+<Step rID="T37">
+<Obj plainTxt="False" ><![CDATA[Health Tools.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[05-04-2022 - 20:35:38]]></Time>
+<TimeTick>1649171138</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="60" >
+<Disp><![CDATA[Health Tools.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="59" >
+<Disp><![CDATA[Health Blogs Apollo 24|7]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="58" >
+<Disp><![CDATA[Health Blogs Apollo 24|7]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T38">
+<Obj plainTxt="False" ><![CDATA[Health tools]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[05-04-2022 - 20:35:44]]></Time>
+<TimeTick>1649171144</TimeTick>
+<Step rID="T39">
+<Obj plainTxt="False" ><![CDATA[Health tools]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[05-04-2022 - 20:35:44]]></Time>
+<TimeTick>1649171144</TimeTick>
+<Step rID="T40">
+<Obj plainTxt="False" ><![CDATA[Health Tools.WaitProperty]]></Obj>
+<Details plainTxt="False" ><![CDATA["abs_x", True, 168, 10000]]></Details>
+<Time><![CDATA[05-04-2022 - 20:35:44]]></Time>
+<TimeTick>1649171144</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="65" >
+<Disp><![CDATA[Health Tools.WaitProperty]]></Disp>
+</NodeArgs>
+</Step>
+<HtmlStep rID="T41">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Standard Checkpoint "Health tools_2": </span><span class="FailedHigh">Failed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 05-04-2022 - 20:35:45</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+	<tr>
+		<td bgcolor="white">
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tr><td  class="hl3">Page Check&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Property Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Property Value&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td class="text">load time&nbsp;</td>
+				<TD class="Text" Title="">&quot;1&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">number of images&nbsp;</td>
+				<TD class="Text" Title="">&quot;8&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">number of links&nbsp;</td>
+				<TD class="Passed" Title="">	<table border=0 width="100%%"><tr><td align=left bgcolor="#ffffff" title="Expected"><span class="Text">&quot;80&quot;&nbsp;</span></td> </tr>
+<tr><td align=left bgcolor="#c0c0c0" title="Actual"><span class="FailedLow">&quot;79&quot;&nbsp;</span></td></tr></table>
+</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><td  class="hl3">Checking  the links captured addresses vs. the expected ones&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Link Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Url&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td class="text">Online Doctor Consultation &amp; Medicines&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Appointments&nbsp;</td>
+				<TD class="Passed" Title="">	<table border=0 width="100%%"><tr><td align=left bgcolor="#ffffff" title="Expected"><span class="Text">&nbsp;</span></td> </tr>
+<tr><td align=left bgcolor="#c0c0c0" title="Actual"><span class="FailedLow">Link does not exist&nbsp;</span></td></tr></table>
+</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Health Records&nbsp;</td>
+				<TD class="Passed" Title="">	<table border=0 width="100%%"><tr><td align=left bgcolor="#ffffff" title="Expected"><span class="Text">&nbsp;</span></td> </tr>
+<tr><td align=left bgcolor="#c0c0c0" title="Actual"><span class="FailedLow">Link does not exist&nbsp;</span></td></tr></table>
+</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Medicines&nbsp;</td>
+				<TD class="Passed" Title="">	<table border=0 width="100%%"><tr><td align=left bgcolor="#ffffff" title="Expected"><span class="Text">&nbsp;</span></td> </tr>
+<tr><td align=left bgcolor="#c0c0c0" title="Actual"><span class="FailedLow">Link does not exist&nbsp;</span></td></tr></table>
+</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Lab Tests&nbsp;</td>
+				<TD class="Passed" Title="">	<table border=0 width="100%%"><tr><td align=left bgcolor="#ffffff" title="Expected"><span class="Text">&nbsp;</span></td> </tr>
+<tr><td align=left bgcolor="#c0c0c0" title="Actual"><span class="FailedLow">Link does not exist&nbsp;</span></td></tr></table>
+</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Covid-19&nbsp;</td>
+				<TD class="Passed" Title="">	<table border=0 width="100%%"><tr><td align=left bgcolor="#ffffff" title="Expected"><span class="Text">&nbsp;</span></td> </tr>
+<tr><td align=left bgcolor="#c0c0c0" title="Actual"><span class="FailedLow">Link does not exist&nbsp;</span></td></tr></table>
+</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Online Doctor Consultation &amp; Medicines&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">About Us&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/AboutUs&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Contact Us / Grievance&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/contact&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">FAQs&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/faq&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Health Queries&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/health-queries&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Terms and Conditions&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/terms&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Returns Policy &nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/returns&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Refund Policy&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/refund-policy&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Privacy Policy&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/privacy&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Apollo 247 Android App&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://play.google.com/store/apps/details?id=com.apollo.patientapp&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Apollo 247 iOS App&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://apps.apple.com/in/app/apollo-247/id1496740273&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Apollo 247 Sitemap&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/static/sitemap&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Online Doctor App&nbsp;</td>
+				<TD class="Text" Title="">&quot;http://onelink.to/qtv8we&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Online Medicine App&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://play.google.com/store/apps/details?id=com.apollo.patientapp&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Apollo Pharmacy&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollopharmacy.in/&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Hospitals And Clinics&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/hospitals-and-clinics&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Blogs&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/blog&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Online Doctor Consultation&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/specialties&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Apollo Circle Membership&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/circle&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Online Medicines&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/medicines&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Project Kavach&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/covid19/kavach&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Cough Scanner&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/covid19/cough-scan/&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Covid Vaccine Tracker&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/covid-vaccine-tracker/&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Covid Vaccine Update&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/covid-vaccine-update/&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Apollo Pro Health Program&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/apollo-pro-health&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Doctors by Specialty&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/static/specialties-sitemap/1&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Doctors by City&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/static/city-doctors-sitemap/1&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">All Doctors List&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/static/doctors-sitemap/1&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Covid Consultation&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/specialties/covid-consultation&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Consult Physicians&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/specialties/general-physician-internal-medicine&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Consult Dermatologists&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/specialties/dermatology&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Consult Paediatricians&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/specialties/paediatrics&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Consult Gynaecologists&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/specialties/obstetrics-and-gynaecology&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Consult Gastroenterologists&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/specialties/gastroenterology-gi-medicine&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Consult Cardiologists&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/specialties/cardiology&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Consult Dietitians&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/specialties/dietetics&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Consult ENT Specialists&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/specialties/ent&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Consult Geriatricians&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/specialties/geriatrics&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Consult Diabetologists&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/specialties/diabetology&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">RT PCR Test At Home&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/lab-tests/covid-19-rt-pcr-with-home-collection&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Book Lab Tests at Home&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/lab-tests&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Renal Profile (KFT, RFT Test)&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/lab-tests/renal-profile-renal-function-test-rft-kft&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Hemogram Test&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/lab-tests/hemogram&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Lipid Profile Test&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/lab-tests/lipid-profile&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Thyroid Profile Test (T3 T4 Tsh Test)&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/lab-tests/free-and-total-thyroid-profile-t3-t4-ft3-ft4-tsh&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">D Dimer Test&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/lab-tests/d-dimer&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Urine Culture Test&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/lab-tests/culture-and-sensitivity-urine&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Complete Blood Count (CBC Test)&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/lab-tests/complete-blood-count-cbc&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Widal Test&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/lab-tests/widal-test-slide-method&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Liver Function Test (LFT Test)&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/lab-tests/liver-function-test-lft-with-ggt&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">View All Brands&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollopharmacy.in/brands&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Health Care&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollopharmacy.in/shop-by-category/health-care&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Personal Care&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollopharmacy.in/shop-by-category/personal-care&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Baby Care&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollopharmacy.in/shop-by-category/mom-baby&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Nutrition&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollopharmacy.in/shop-by-category/nutrition&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Healthcare Devices&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollopharmacy.in/shop-by-category/healthcare-devices&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Beauty Skin Care&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollopharmacy.in/shop-by-health-conditions/beauty-skin-care&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Immunity Boosters&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollopharmacy.in/shop-by-health-conditions/cold-immunity&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Coronavirus Prevention&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollopharmacy.in/shop-by-health-conditions/coronavirus-prevention&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Diabetes Care&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollopharmacy.in/shop-by-health-conditions/diabetic&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Patanjali Coronil Kit&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollopharmacy.in/otc/patanjali-divya-swasari-coronil-kit&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Mamaearth Products&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollopharmacy.in/shop-by-brand/mamaearth&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Apollo Hospital Jubilee Hills&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/hospital/apollo-hospital-jubilee-hills-in-hyderabad-d8d558b6-4221-4696-8404-416da1ec065a&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Apollo Hospitals Greams Road&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/hospital/apollo-hospitals-greams-road-in-chennai-7fc430f1-249f-4440-81b4-9d0e3c4565f7&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Indraprastha Apollo Hospital&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/hospital/indraprastha-apollo-hospital-in-delhi-34de0a1c-6155-4676-8370-ce48b7653a1e&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Apollo Hospitals Bannerghatta Road&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/hospital/apollo-hospitals-bannerghatta-road-in-bangalore-9ad12fd0-53af-43da-b85d-69305b4be791&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Apollo Hopsital - Belapur, Navi Mumbai&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/hospital/apollo-hopsital-belapur-navi-mumbai-in-mumbai-0eb94136-ab23-4a12-9f4b-69fd367b8ff1&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Apollo Hospitals Canal Circular Road&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/hospital/apollo-hospitals-canal-circular-road-in-kolkata-2fdb5332-6678-4fbb-bfd2-6ca6f77cfbcb&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Online Doctor Consultation &amp; Medicines&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollo247.com/&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Pharmacy&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://www.apollopharmacy.in/&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><td  class="hl3">Checking  the images captured addresses vs. the expected ones&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Image Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Source&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td class="text">Online Doctor Consultation &amp; Medicines&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/images/ic_logo.png&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">location-img&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/images/location-icon.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Body Mass Index&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/images/health-tool/web/BMI.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Calories Required&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/images/Calories_reuired.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Calories Burnt&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/images/Calories_expended.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Heart rate&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/images/health-tool/web/Heratrat.svg&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Online Doctor Consultation &amp; Medicines&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/images/ic_logo.png&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<td class="text">Online Doctor Consultation &amp; Medicines&nbsp;</td>
+				<TD class="Text" Title="">&quot;https://newassets.apollo247.com/images/ic_logo.png&quot;&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body></html>]]></HTML>
+<TimeTick>1649171145</TimeTick>
+<NodeArgs eType="Verification" icon="7" nRep="67" status="Failed" >
+<Disp><![CDATA[Checkpoint "Health tools_2"]]></Disp>
+<BtmPane vType="Mercury.SSHWeb" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf30.xml]]></Path>
+<ASHilite><![CDATA[10000000]]></ASHilite>
+</BtmPane>
+</NodeArgs>
+</HtmlStep>
+<Step rID="T42">
+<Obj plainTxt="False" ><![CDATA[Body Mass Index]]></Obj>
+<Details plainTxt="False" ><![CDATA[WebElement]]></Details>
+<Time><![CDATA[05-04-2022 - 20:35:45]]></Time>
+<TimeTick>1649171145</TimeTick>
+<HtmlStep rID="T43">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Standard Checkpoint "Body Mass Index": </span><span class="PassedHigh">Passed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 05-04-2022 - 20:35:45</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+	<tr>
+		<td bgcolor="white">
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tr><td  class="hl3">Body Mass Index Results&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Property Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Property Value&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<TD class="Text" Title="">html tag&nbsp;</TD>
+				<TD class="Text" Title="">H4&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<TD class="Text" Title="">innertext&nbsp;</TD>
+				<TD class="Text" Title="">Body Mass Index&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body></html>]]></HTML>
+<TimeTick>1649171145</TimeTick>
+<NodeArgs eType="Verification" icon="9" nRep="70" status="Passed" >
+<Disp><![CDATA[Checkpoint "Body Mass Index"]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<NodeArgs eType="Context" icon="9" nRep="69" status="Passed" >
+<Disp><![CDATA[Body Mass Index]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T44">
+<Obj plainTxt="False" ><![CDATA[Calories Required]]></Obj>
+<Details plainTxt="False" ><![CDATA[WebElement]]></Details>
+<Time><![CDATA[05-04-2022 - 20:35:45]]></Time>
+<TimeTick>1649171145</TimeTick>
+<HtmlStep rID="T45">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Standard Checkpoint "Calories Required": </span><span class="PassedHigh">Passed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 05-04-2022 - 20:35:45</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+	<tr>
+		<td bgcolor="white">
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tr><td  class="hl3">Calories Required Results&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Property Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Property Value&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<TD class="Text" Title="">html tag&nbsp;</TD>
+				<TD class="Text" Title="">H4&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<TD class="Text" Title="">innertext&nbsp;</TD>
+				<TD class="Text" Title="">Calories Required&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body></html>]]></HTML>
+<TimeTick>1649171145</TimeTick>
+<NodeArgs eType="Verification" icon="9" nRep="73" status="Passed" >
+<Disp><![CDATA[Checkpoint "Calories Required"]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<NodeArgs eType="Context" icon="9" nRep="72" status="Passed" >
+<Disp><![CDATA[Calories Required]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T46">
+<Obj plainTxt="False" ><![CDATA[Calories Burnt]]></Obj>
+<Details plainTxt="False" ><![CDATA[WebElement]]></Details>
+<Time><![CDATA[05-04-2022 - 20:35:45]]></Time>
+<TimeTick>1649171145</TimeTick>
+<HtmlStep rID="T47">
+<HTML><![CDATA[<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+<base href=""/>
+<link rel="stylesheet" href="Results.css"/>
+</head>
+<body bgcolor="#ffffff" leftmargin="20" marginwidth="20" topmargin="10" marginheight="10" vlink="#9966cc">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tr><td height="1" class="bg_midblue"></td></tr>
+	<tr><td height="30"><span class="hl1"> Standard Checkpoint "Calories Burnt": </span><span class="PassedHigh">Passed</span></td></tr>
+	<tr><td height="2" class="bg_darkblue"></td></tr>
+	<tr><td height="10"></td></tr>
+	<tr><td><span class="text"><b>Date and Time:</b> 05-04-2022 - 20:35:45</span></td></tr>
+		
+	<tr><td height="15"></td></tr>
+</table>
+<!--Until here code from report media-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" id=TABLE2><tr height="1"><td height="1" class="bg_gray_ccc"></td></tr><tr><td height="5"></td></tr></table><table>
+	<tr><td height="30"><span class="hl2"> Details</span></td></tr><tr><td height="5"></td></tr>
+</table>
+<table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor="#666699">
+	<tr>
+		<td bgcolor="white">
+		<table border="0" cellpadding="3" cellspacing="0" width="100%">
+<tr><td  class="hl3">Calories Burnt Results&nbsp;</td></tr>
+<tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<td height=1 class="tablehl">Property Name&nbsp;&nbsp;</td>
+				<td height=1 class="tablehl">Property Value&nbsp;&nbsp;</td>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><tr><th colspan=2 height=1 class="bg_darkblue"></th></tr>
+<TR>
+				<TD class="Text" Title="">html tag&nbsp;</TD>
+				<TD class="Text" Title="">H4&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR><TR>
+				<TD class="Text" Title="">innertext&nbsp;</TD>
+				<TD class="Text" Title="">Calories Burnt&nbsp;</TD>
+</TR>
+			<TR><th colspan=2 height=1 class="bg_gray_eee"></th></TR>
+		</table>
+		</td>
+	</tr>
+</table>
+</body></html>]]></HTML>
+<TimeTick>1649171145</TimeTick>
+<NodeArgs eType="Verification" icon="9" nRep="76" status="Passed" >
+<Disp><![CDATA[Checkpoint "Calories Burnt"]]></Disp>
+</NodeArgs>
+</HtmlStep>
+<NodeArgs eType="Context" icon="9" nRep="75" status="Passed" >
+<Disp><![CDATA[Calories Burnt]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="64" status="Failed" >
+<Disp><![CDATA[Health tools]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T48">
+<Obj plainTxt="False" ><![CDATA[Health tools.Navigate]]></Obj>
+<Details plainTxt="False" ><![CDATA[Navigate to https://www.apollo247.com/blog/health-tools<br>Target Frame: _top<br>Post Data: <br>HTTP Headers: ]]></Details>
+<Time><![CDATA[05-04-2022 - 20:35:49]]></Time>
+<TimeTick>1649171149</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="78" >
+<Disp><![CDATA[Health tools.Navigate]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T49">
+<Obj plainTxt="False" ><![CDATA[Health tools]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[05-04-2022 - 20:36:14]]></Time>
+<TimeTick>1649171174</TimeTick>
+<Step rID="T50">
+<Obj plainTxt="False" ><![CDATA[Body Mass Index19bmi05]]></Obj>
+<Details plainTxt="False" ><![CDATA[Cannot&nbsp;identify&nbsp;the&nbsp;object&nbsp;"Body&nbsp;Mass&nbsp;Index19bmi05"&nbsp;(of&nbsp;class&nbsp;WebElement).<br/>Verify&nbsp;that&nbsp;this&nbsp;object's&nbsp;properties&nbsp;match&nbsp;an&nbsp;object&nbsp;currently&nbsp;displayed&nbsp;in&nbsp;your&nbsp;application.]]></Details>
+<Time><![CDATA[05-04-2022 - 20:36:14]]></Time>
+<TimeTick>1649171174</TimeTick>
+<Step rID="T51">
+<Obj plainTxt="False" ><![CDATA[Body Mass Index19bmi05]]></Obj>
+<Details plainTxt="False" ><![CDATA[Object's physical description:<br>Mercury Class = WebElement<br>Html Tag = DIV<br>_xpath = //DIV[2]/DIV[1]/DIV[1]/DIV[1]<br>|Visible = -1<br>innertext = Body Mass Index19bmi05 April 2022Indicates excess body fat, from height and weightCALCULATE<br>Html Id = <br>DHTML Class = jss6<br>acc_name = <br>]]></Details>
+<Time><![CDATA[05-04-2022 - 20:36:14]]></Time>
+<TimeTick>1649171174</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="119" status="Warning" nType="Description" >
+<Disp><![CDATA[Body Mass Index19bmi05]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="9" nRep="118" status="Failed" nType="Run Error" >
+<Disp><![CDATA[Body Mass Index19bmi05]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="117" status="Failed" >
+<Disp><![CDATA[Health tools]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="63" status="Failed" >
+<Disp><![CDATA[Health tools]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T52">
+<Obj plainTxt="False" ><![CDATA[Health tools]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[05-04-2022 - 20:36:14]]></Time>
+<TimeTick>1649171174</TimeTick>
+<Step rID="T53">
+<Obj plainTxt="False" ><![CDATA[Health tools]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[05-04-2022 - 20:36:14]]></Time>
+<TimeTick>1649171174</TimeTick>
+<Step rID="T54">
+<Obj plainTxt="False" ><![CDATA[Run Error]]></Obj>
+<Details plainTxt="False" ><![CDATA[Cannot identify the object &quot;Body Mass Index19bmi05&quot; (of class WebElement).<BR/>Verify that this object's properties match an object currently displayed in your application.<BR/>Function file: E:\UFT Classbook PDF\Apollo (COVID-19)\HybridDrivenFramework\FunctionLibrary\Librarr_COVID-19.qfl<BR/>Line (43): &quot;	Browser(&quot;Health tools&quot;).Page(&quot;Health tools&quot;).WebElement(&quot;Body Mass Index19bmi05&quot;).Check CheckPoint(&quot;Body Mass Index19bmi05 April 2022Indicates excess body fat, from height and weightCALCULATE&quot;)&quot;.]]></Details>
+<Time><![CDATA[05-04-2022 - 20:36:14]]></Time>
+<TimeTick>1649171174</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="122" status="Failed" Source="E:\UFT Classbook PDF\Apollo (COVID-19)\HybridDrivenFramework\FunctionLibrary\Librarr_COVID-19.qfl" SourceLine="42" >
+<Disp><![CDATA[Run Error]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T55">
+<Obj plainTxt="False" ><![CDATA[Stop Run]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run stopped by user.]]></Details>
+<Time><![CDATA[05-04-2022 - 20:36:21]]></Time>
+<TimeTick>1649171181</TimeTick>
+<NodeArgs eType="General" icon="11" nRep="123" status="Information" >
+<Disp><![CDATA[Stop Run]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="121" status="Failed" Source="E:\UFT Classbook PDF\Apollo (COVID-19)\HybridDrivenFramework\FunctionLibrary\Librarr_COVID-19.qfl" SourceLine="-1" >
+<Disp><![CDATA[Health tools]]></Disp>
+<BtmPane vType="Mercury.SSHWeb" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf31.xml]]></Path>
+<ASHilite><![CDATA[10000000]]></ASHilite>
+</BtmPane>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="120" status="Failed" Source="E:\UFT Classbook PDF\Apollo (COVID-19)\HybridDrivenFramework\FunctionLibrary\Librarr_COVID-19.qfl" SourceLine="-1" >
+<Disp><![CDATA[Health tools]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="05-04-2022 - 20:35:11" eTime="05-04-2022 - 20:36:21" passed="13" failed="5" warnings="1" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="7" status="Failed" >
+<Disp><![CDATA[Action1 Summary]]></Disp>
+</NodeArgs>
+</Action>
+<NodeArgs eType="StartIteration" icon="3" nRep="6" status="Failed" >
+<Disp><![CDATA[Driver_Covid19 Iteration 1 (Row 1)]]></Disp>
+</NodeArgs>
+</DIter>
+<Summary sTime="05-04-2022 - 20:35:10" eTime="05-04-2022 - 20:36:21" passed="13" failed="5" warnings="1" ></Summary>
+<NodeArgs eType="StartTest" icon="1" nRep="3" status="Failed" >
+<Disp><![CDATA[Test Driver_Covid19 Summary]]></Disp>
+</NodeArgs>
+</Doc>
+</Report>

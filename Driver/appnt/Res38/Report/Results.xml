@@ -1,0 +1,347 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE Report
+[
+<!ELEMENT Report (General ,(Doc|BPT)) >
+<!ATTLIST Report ver CDATA #REQUIRED tmZone CDATA #REQUIRED>
+
+<!ELEMENT General ( DocLocation ) >
+<!ATTLIST General productName CDATA #REQUIRED productVer CDATA #REQUIRED os CDATA #REQUIRED host CDATA #REQUIRED qcserver CDATA #IMPLIED qcproject CDATA #IMPLIED SolManSolutionId CDATA #IMPLIED SolManProjectId CDATA #IMPLIED SolManTestPlanId CDATA #IMPLIED SolManTestPackageId CDATA #IMPLIED SolManUserInfoData CDATA #IMPLIED  >
+
+<!ELEMENT BPT (DName,Res,DVer?,TSet?,TInst?,NodeArgs,AdditionalInfo*,Doc*) >
+<!ATTLIST BPT rID ID #REQUIRED >
+
+<!ELEMENT Doc (DName,ConfName?,Res,DVer?,TSet?,TInst?,RunType?,DT?,AdditionalInfo*,Step*,DIter*,Step*,Action*,Doc*,Summary?,TestMaintenanceSummary*,NodeArgs?) >
+<!ATTLIST Doc rID ID #REQUIRED type (Test|BC|BPTWrapperTest|Flow|Group|Action) "Test" productName CDATA #REQUIRED BCIter CDATA #IMPLIED >
+
+<!ELEMENT RunType ( #PCDATA )>
+<!ATTLIST RunType fmStep (False|True) "False" batch (False|True) "False" upDesc (False|True) "False" upChk (False|True) "False" upAS (False|True) "False">
+
+<!ELEMENT DName ( #PCDATA ) >
+
+<!ELEMENT ConfName ( #PCDATA ) >
+
+<!ELEMENT Res ( #PCDATA ) >
+
+<!ELEMENT AdditionalInfo (AdditionalDataName,AdditionalDataValue ) >
+
+<!ELEMENT AdditionalDataName ( #PCDATA ) >
+
+<!ELEMENT AdditionalDataValue ( #PCDATA ) >
+
+<!ELEMENT DVer ( #PCDATA ) >
+
+<!ELEMENT TSet ( #PCDATA ) >
+
+<!ELEMENT TInst ( #PCDATA ) >
+
+<!ELEMENT DIter (Step*,Action+,Summary?,NodeArgs)>
+<!ATTLIST DIter rID ID #REQUIRED iterID CDATA #REQUIRED>
+
+<!ELEMENT DocLocation ( #PCDATA )>
+
+<!ELEMENT Action (AName,AIter*,(Step|HtmlStep|Action)*, Summary,ActionMaintenanceSummary*, NodeArgs ) >
+<!ATTLIST Action rID ID #REQUIRED>
+
+<!ELEMENT AIter ((Step|HtmlStep|Action)*,DataMapping?, Summary?,NodeArgs) >
+<!ATTLIST AIter rID ID #REQUIRED iterID CDATA #REQUIRED isCountable (False|True) "False" >
+
+<!ELEMENT AName ( #PCDATA ) >
+
+<!ELEMENT TestMaintenanceSummary (ActionMaintenanceSummary*) >
+<!ATTLIST TestMaintenanceSummary ObjectsAdded CDATA #REQUIRED ObjectsUpdated CDATA #REQUIRED StepsUpdated CDATA #REQUIRED StepsComments CDATA #REQUIRED><!ELEMENT ActionMaintenanceSummary (ObjectChange* ) >
+<!ATTLIST ActionMaintenanceSummary Action CDATA #REQUIRED Objects CDATA #REQUIRED Updated CDATA #REQUIRED LinesTotal CDATA #REQUIRED Added CDATA #REQUIRED LinesUpdated CDATA #REQUIRED>
+
+<!ELEMENT ObjectChange  (Hierarchy, PropertyChangeList* ) >
+<!ATTLIST ObjectChange Operation CDATA #IMPLIED OriginalRepository CDATA #IMPLIED>
+
+<!ELEMENT PropertyChangeList (PropertyDef*) >
+
+<!ELEMENT PropertyDef (OriginalValue, NewValue) >
+<!ATTLIST PropertyDef PropName CDATA #REQUIRED OriginRegularExpression (True|False) "False" NewRegularExpression (True|False) "False" AddedProperty (True|False) "False" >
+
+<!ELEMENT OriginalValue ( #PCDATA )>
+
+<!ELEMENT NewValue ( #PCDATA )>
+
+<!ELEMENT Hierarchy  (ObjectName, Hierarchy*) >
+<!ATTLIST Hierarchy MicClass CDATA #REQUIRED>
+
+<!ELEMENT ObjectName  ( #PCDATA ) >
+
+<!ELEMENT Step (Obj,Details,Time,TimeTick* ,(Step|HtmlStep|Doc)*, DataMapping?, NodeArgs) >
+<!ATTLIST Step rID ID #REQUIRED retval CDATA #IMPLIED>
+
+<!ELEMENT HtmlStep (HTML,TimeTick*,(Step|HtmlStep|Doc)*,NodeArgs) >
+<!ATTLIST HtmlStep rID ID #REQUIRED >
+
+<!ELEMENT Obj ( #PCDATA ) >
+<!ATTLIST Obj plainTxt (False|True) "True">
+
+<!ELEMENT Details ( #PCDATA ) >
+<!ATTLIST Details plainTxt (False|True) "True">
+
+<!ELEMENT Time ( #PCDATA ) >
+
+<!ELEMENT HTML ( #PCDATA ) >
+
+<!ELEMENT Disp ( #PCDATA ) >
+
+<!ELEMENT TimeTick ( #PCDATA ) >
+
+<!ELEMENT DataMapping ( DataMappedItem* )>
+<!ELEMENT DataMappedItem EMPTY >
+<!ATTLIST DataMappedItem dsName CDATA #REQUIRED >
+<!ATTLIST DataMappedItem rowId CDATA #REQUIRED >
+
+<!ELEMENT NodeArgs (Disp,TopPane?,BtmPane?,ExtendedInfo? )>
+<!ATTLIST NodeArgs eType CDATA #REQUIRED icon CDATA #REQUIRED nRep CDATA #REQUIRED UserNote CDATA #IMPLIED filter (False|True) "True">
+<!ATTLIST NodeArgs status (Passed|Failed|Done|Warning|Information) "Done">
+<!ATTLIST NodeArgs iconSel CDATA #IMPLIED nType CDATA #IMPLIED MovieMarker CDATA "">
+<!ATTLIST NodeArgs Source CDATA #IMPLIED SourceLine CDATA #IMPLIED StepFlowItemKey CDATA #IMPLIED >
+
+<!ELEMENT TopPane (Path)>
+
+<!ELEMENT BtmPane ( (Path|WR)?,ASHilite?)>
+<!ATTLIST BtmPane vType CDATA "HTML">
+
+<!ELEMENT Path ( #PCDATA ) >
+
+<!ELEMENT ASHilite ( #PCDATA ) >
+
+<!ELEMENT WR ( #PCDATA ) >
+
+<!ELEMENT ExtendedInfo ( StepData ) >
+
+<!ATTLIST ExtendedInfo StepType CDATA #REQUIRED>
+<!ELEMENT DT (NodeArgs) >
+<!ATTLIST DT rID ID #REQUIRED>
+
+<!ELEMENT Summary (Param*)>
+<!ATTLIST Summary sTime CDATA #IMPLIED eTime CDATA #IMPLIED passed CDATA #IMPLIED failed CDATA #IMPLIED warnings CDATA #IMPLIED retval CDATA #IMPLIED stopped (False|True) "False" >
+
+<!ELEMENT Param (ParamName,ParamVal)+ >
+<!ATTLIST Param paramInOut (In|Out) "In">
+
+<!ELEMENT ParamName ( #PCDATA ) >
+
+<!ELEMENT ParamVal ( #PCDATA ) >
+
+]
+>
+<Report ver="2.0" tmZone="India Standard Time">
+<General productName="HPE Unified Functional Testing" productVer="14.03" os="" host="LAPTOP-P330KRMQ"><DocLocation><![CDATA[E:\UFT Classbook PDF\Apollo (COVID-19)\HybridDrivenFramework\Driver\appnt]]></DocLocation></General>
+<Doc rID="T1"   productName= "HPE Unified Functional Testing"  >
+<DName><![CDATA[appnt]]></DName>
+<Res><![CDATA[Res38]]></Res>
+<RunType fmStep="True" /><DT rID="T2">
+<NodeArgs eType="Table" icon="2" nRep="4" filter="False" >
+<Disp><![CDATA[Run-Time Data Table]]></Disp>
+<BtmPane vType="Table" >
+<Path><![CDATA[Default.xls]]></Path>
+</BtmPane>
+</NodeArgs>
+</DT>
+<Action rID="T3">
+<AName><![CDATA[Action1]]></AName>
+<Step rID="T4">
+<Obj plainTxt="False" ><![CDATA[Apollo]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[06-04-2022 - 12:54:59]]></Time>
+<TimeTick>1649229899</TimeTick>
+<Step rID="T5">
+<Obj plainTxt="False" ><![CDATA[Apollo]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[06-04-2022 - 12:54:59]]></Time>
+<TimeTick>1649229899</TimeTick>
+<Step rID="T6">
+<Obj plainTxt="False" ><![CDATA[Add New Profile.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[06-04-2022 - 12:54:59]]></Time>
+<TimeTick>1649229899</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="11" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Add New Profile.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T7">
+<Obj plainTxt="False" ><![CDATA[First Name.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["ad"]]></Details>
+<Time><![CDATA[06-04-2022 - 12:55:00]]></Time>
+<TimeTick>1649229900</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="14" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[First Name.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T8">
+<Obj plainTxt="False" ><![CDATA[Last name.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["as"]]></Details>
+<Time><![CDATA[06-04-2022 - 12:55:00]]></Time>
+<TimeTick>1649229900</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="17" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Last name.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T9">
+<Obj plainTxt="False" ><![CDATA[dd/mm/yyyy.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["01/11/1994"]]></Details>
+<Time><![CDATA[06-04-2022 - 12:55:00]]></Time>
+<TimeTick>1649229900</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="20" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[dd/mm/yyyy.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T10">
+<Obj plainTxt="False" ><![CDATA[Male.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[06-04-2022 - 12:55:00]]></Time>
+<TimeTick>1649229900</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="23" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Male.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T11">
+<Obj plainTxt="False" ><![CDATA[Important : You will not.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[06-04-2022 - 12:55:00]]></Time>
+<TimeTick>1649229900</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="26" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Important : You will not.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T12">
+<Obj plainTxt="False" ><![CDATA[Female.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[06-04-2022 - 12:55:00]]></Time>
+<TimeTick>1649229900</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="29" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Female.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T13">
+<Obj plainTxt="False" ><![CDATA["<iframe src='https://www.googl"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[06-04-2022 - 12:55:21]]></Time>
+<TimeTick>1649229921</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="67" status="Warning" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA["<iframe src='https://www.googl"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T14">
+<Obj plainTxt="False" ><![CDATA["<iframe src='https://www.googl"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>micclass=WebElement<br>innertext=&ltiframe src="https://www.googletagmanager.com/ns.html?id=GTM-PNGHP4L&gtm_auth=&gtm_preview=&gtm_cookies_win=x" height="0" width="0" style="display:none;visibility:hidden" id="tag-manager"&gt&lt/iframe&gt Your browser does not support JavaScript! AppointmentsHealth Records MedicinesLab TestsCovid-190Manage ProfilesManage ProfilesMy PaymentsHealth RecordsAddress BookOneApollo MembershipNeed HelpNotification PreferencesLogoutAnamika SonavaneSELF | FEMALE | | 24UHID : APJ1.0005130035DOB : 08 Nov, 1997+919112037149Add New Profile+About Apollo 247About UsContact Us / GrievanceFAQsHealth QueriesTerms and ConditionsReturns Policy Refund PolicyPrivacy PolicyApollo 247 Android AppApollo 247 iOS AppApollo 247 SitemapOnline Doctor AppOnline Medicine AppApollo PharmacyHospitals And ClinicsBlogs+ServicesOnline Doctor ConsultationApollo Circle MembershipOnline MedicinesProject KavachCough ScannerCovid Vaccine TrackerCovid Vaccine UpdateApollo Pro Health ProgramDoctors by SpecialtyDoctors by CityAll Doctors List+Top SpecialtiesCovid ConsultationConsult PhysiciansConsult DermatologistsConsult PaediatriciansConsult GynaecologistsConsult GastroenterologistsConsult CardiologistsConsult DietitiansConsult ENT SpecialistsConsult GeriatriciansConsult Diabetologists+Book Lab Tests at HomeRT PCR Test At HomeBook Lab Tests at HomeRenal Profile (KFT, RFT Test)Hemogram TestLipid Profile TestThyroid Profile Test (T3 T4 Tsh Test)D Dimer TestUrine Culture TestComplete Blood Count (CBC Test)Widal TestLiver Function Test (LFT Test)+Product CategoriesView All BrandsHealth CarePersonal CareBaby CareNutritionHealthcare DevicesBeauty Skin CareImmunity BoostersCoronavirus PreventionDiabetes CarePatanjali Coronil KitMamaearth Products+Top HospitalsApollo Hospital Jubilee HillsApollo Hospitals Greams RoadIndraprastha Apollo HospitalApollo Hospitals Bannerghatta RoadApollo Hopsital - Belapur, Navi MumbaiApollo Hospitals Canal Circular RoadAppointmentMedicinesLab TestsHealth RecordsMy Account var webengage; const licenseCode = 'in~~c2ab3533'; !(function(w, e, b, n, g) { function o(e, t) { e[t[t.length - 1]] = function() { r.__queue.push([t.join('.'), arguments]); }; } var i, s, r = w[b], z = ' ', l = 'init options track screen onReady'.split(z), a = 'feedback survey notification'.split(z), c = 'options render clear abort'.split(z), p = 'Open Close Submit Complete View Click'.split(z), u = 'identify login logout setAttribute'.split(z); if (!r || !r.__v) { for (w[b] = r = { __queue: [], __v: '6.0', user: {} }, i = 0; i &lt l.length; i++) o(r, [l[i]]); for (i = 0; i &lt a.length; i++) { for (r[a[i]] = {}, s = 0; s &lt c.length; s++) o(r[a[i]], [a[i], c[s]]); for (s = 0; s &lt p.length; s++) o(r[a[i]], [a[i], 'on' + p[s]]); } for (i = 0; i &lt u.length; i++) o(r.user, ['user', u[i]]); setTimeout(function() { var f = e.createElement('script'), d = e.getElementById('_webengage_script_tag'); (f.type = 'text/javascript'), (f.async = !0), (f.src = ('https:' == e.location.protocol ? 'https://widgets.in.webengage.com' : 'http://widgets.in.webengage.com') + '/js/webengage-min-v-6.0.js'), d.parentNode.insertBefore(f, d); }); } })(window, document, 'webengage'); webengage.init(licenseCode); var clevertap = { event: [], profile: [], region: 'in1', account: [], onUserLogin: [], notifications: [], privacy: [], }; clevertap.account.push({ id: '679-WZ9-4W6Z' }); (function() { var wzrk = document.createElement('script'); wzrk.type = 'text/javascript'; wzrk.async = true; wzrk.src = ('https:' == document.location.protocol ? 'https://d2r1yp2w7bby2u.cloudfront.net' : 'http://static.clevertap.com') + '/js/a.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(wzrk, s); })(); #webklipper-publisher-widget-container, #webklipper-publisher-widget-container * {overflow:visible; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline;}var s=document.createElement("link");s.href="https://www.google-analytics.com";s.rel="preconnect";s.setAttribute("crossorigin","");document.head.append(s);var dtfn=google_tag_manager["GTM-PNGHP4L"].macro(13),lurl=document.location.href,urlHost=document.location.host,referrerUrl=document.referrer,referrerHost=document.referrer.split("/")[2];function getParameterByName(a){var b=window.location.href;a=a.replace(/[\[\]]/g,"\\$\x26");a=new RegExp("[?\x26]"+a+"(\x3d([^\x26#]*)|\x26|#|$)");return(b=a.exec(b))?b[2]?decodeURIComponent(b[2].replace(/\+/g," ")):"":"NA"} var sourceutm=getParameterByName("utm_source"),mediumutm=getParameterByName("utm_medium"),campaignutm=getParameterByName("utm_campaign"),termutm=getParameterByName("utm_term"),contentutm=getParameterByName("utm_content"),idutm=getParameterByName("utm_id"),gclidutm=getParameterByName("gclid"),fbclidutm=getParameterByName("fbclid"); if("NA"!=sourceutm||"NA"!=mediumutm||"NA"!=campaignutm||"NA"!=termutm||"NA"!=contentutm||"NA"!=idutm)dtfn("gtm_url",lurl,7),dtfn("gtm_source",sourceutm,7),dtfn("gtm_medium",mediumutm,7),dtfn("gtm_campaign",campaignutm,7),dtfn("gtm_term",termutm,7),dtfn("gtm_content",contentutm,7),dtfn("gtm_id",idutm,7); "apollo247.com"!==referrerHost&&"covid.apollo247.com"!==referrerHost&&"securegw.paytm.in"!==referrerHost&&"securegw-stage.paytm.in"!==referrerHost&&"apollo247.onelink.me"!==referrerHost&&"apl247.onelink.me"!==referrerHost&&""!==referrerUrl&&referrerHost!=urlHost&&dtfn("gtm_referrer",referrerUrl,7); var dtlyr=dataLayer,evntdtlyr=dtlyr.map(function(a){return a=a.event}),pagvwexst=evntdtlyr.includes("pageviewEvent");pagvwexst||dataLayer.push({event:"pageviewEvent",pageName:"Others",pageLOB:"Others",pageType:"Others"}); var btn=document.getElementsByClassName("afb-download-button").length;if(btn!=0&&!("Others".indexOf("Listing Page")&gt0&&"Others"=="Consultation"))AF("banners","hideBanner");var dtfn=google_tag_manager["GTM-PNGHP4L"].macro(38); if("UserLoggedIn"=="UserLoggedIn"){var dataly=window.dataLayer;var datalylen=dataly.length;var chckind=-1;for(var j=datalylen-1;j&gt=0;j--)if(dataly[j]["event"]=="UserLoggedIn"){chckind=j;break}var runcode=chckind==-1?false:dataly[chckind-1]["event"]=="OTPValidation Failed"?false:true;if(runcode){if("96b1b5c1-698f-4d8a-a160-1cef1d5d1f53"==undefined||"96b1b5c1-698f-4d8a-a160-1cef1d5d1f53"==null||"96b1b5c1-698f-4d8a-a160-1cef1d5d1f53"=="null"||"96b1b5c1-698f-4d8a-a160-1cef1d5d1f53"=="undefined")if("Login"=="Login")dataLayer.push({"event":"Log In"}); else dataLayer.push({"event":"Registration"});dtfn("gtm_userid","96b1b5c1-698f-4d8a-a160-1cef1d5d1f53",30)}}else{dataLayer.push({"event":"Log Out"});dtfn("gtm_userid",null,30)}; Add New Family MemberImportant : You will not be able to edit these details once you have saved them!Full NameDate Of BirthGenderMaleFemaleOtherRelation​Email Address (Optional)CancelSaveBrotherCousinDaughterFatherGranddaughterGrandfatherGrandmotherGrandsonHusbandMeMotherOtherSisterSonWife<br>html tag=BODY<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=WebElement<br>html tag=BODY<br>]]></Details>
+<Time><![CDATA[06-04-2022 - 12:55:21]]></Time>
+<TimeTick>1649229921</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="68" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA["<iframe src='https://www.googl"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T15">
+<Obj plainTxt="False" ><![CDATA[<iframe src='https://www.googl.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[06-04-2022 - 12:55:21]]></Time>
+<TimeTick>1649229921</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="69" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[<iframe src='https://www.googl.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T16">
+<Obj plainTxt="False" ><![CDATA[WebElement.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[06-04-2022 - 12:55:22]]></Time>
+<TimeTick>1649229922</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="72" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[WebElement.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T17">
+<Obj plainTxt="False" ><![CDATA["<iframe src='https://www.googl"- Description mismatch]]></Obj>
+<Details plainTxt="False" ><![CDATA[The object was not found using the test object description. Check the object's properties.]]></Details>
+<Time><![CDATA[06-04-2022 - 12:55:42]]></Time>
+<TimeTick>1649229942</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="108" status="Warning" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA["<iframe src='https://www.googl"- Description mismatch]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T18">
+<Obj plainTxt="False" ><![CDATA["<iframe src='https://www.googl"- Smart Identification]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>micclass=WebElement<br>innertext=&ltiframe src="https://www.googletagmanager.com/ns.html?id=GTM-PNGHP4L&gtm_auth=&gtm_preview=&gtm_cookies_win=x" height="0" width="0" style="display:none;visibility:hidden" id="tag-manager"&gt&lt/iframe&gt Your browser does not support JavaScript! AppointmentsHealth Records MedicinesLab TestsCovid-190Manage ProfilesManage ProfilesMy PaymentsHealth RecordsAddress BookOneApollo MembershipNeed HelpNotification PreferencesLogoutAnamika SonavaneSELF | FEMALE | | 24UHID : APJ1.0005130035DOB : 08 Nov, 1997+919112037149Add New Profile+About Apollo 247About UsContact Us / GrievanceFAQsHealth QueriesTerms and ConditionsReturns Policy Refund PolicyPrivacy PolicyApollo 247 Android AppApollo 247 iOS AppApollo 247 SitemapOnline Doctor AppOnline Medicine AppApollo PharmacyHospitals And ClinicsBlogs+ServicesOnline Doctor ConsultationApollo Circle MembershipOnline MedicinesProject KavachCough ScannerCovid Vaccine TrackerCovid Vaccine UpdateApollo Pro Health ProgramDoctors by SpecialtyDoctors by CityAll Doctors List+Top SpecialtiesCovid ConsultationConsult PhysiciansConsult DermatologistsConsult PaediatriciansConsult GynaecologistsConsult GastroenterologistsConsult CardiologistsConsult DietitiansConsult ENT SpecialistsConsult GeriatriciansConsult Diabetologists+Book Lab Tests at HomeRT PCR Test At HomeBook Lab Tests at HomeRenal Profile (KFT, RFT Test)Hemogram TestLipid Profile TestThyroid Profile Test (T3 T4 Tsh Test)D Dimer TestUrine Culture TestComplete Blood Count (CBC Test)Widal TestLiver Function Test (LFT Test)+Product CategoriesView All BrandsHealth CarePersonal CareBaby CareNutritionHealthcare DevicesBeauty Skin CareImmunity BoostersCoronavirus PreventionDiabetes CarePatanjali Coronil KitMamaearth Products+Top HospitalsApollo Hospital Jubilee HillsApollo Hospitals Greams RoadIndraprastha Apollo HospitalApollo Hospitals Bannerghatta RoadApollo Hopsital - Belapur, Navi MumbaiApollo Hospitals Canal Circular RoadAppointmentMedicinesLab TestsHealth RecordsMy Account var webengage; const licenseCode = 'in~~c2ab3533'; !(function(w, e, b, n, g) { function o(e, t) { e[t[t.length - 1]] = function() { r.__queue.push([t.join('.'), arguments]); }; } var i, s, r = w[b], z = ' ', l = 'init options track screen onReady'.split(z), a = 'feedback survey notification'.split(z), c = 'options render clear abort'.split(z), p = 'Open Close Submit Complete View Click'.split(z), u = 'identify login logout setAttribute'.split(z); if (!r || !r.__v) { for (w[b] = r = { __queue: [], __v: '6.0', user: {} }, i = 0; i &lt l.length; i++) o(r, [l[i]]); for (i = 0; i &lt a.length; i++) { for (r[a[i]] = {}, s = 0; s &lt c.length; s++) o(r[a[i]], [a[i], c[s]]); for (s = 0; s &lt p.length; s++) o(r[a[i]], [a[i], 'on' + p[s]]); } for (i = 0; i &lt u.length; i++) o(r.user, ['user', u[i]]); setTimeout(function() { var f = e.createElement('script'), d = e.getElementById('_webengage_script_tag'); (f.type = 'text/javascript'), (f.async = !0), (f.src = ('https:' == e.location.protocol ? 'https://widgets.in.webengage.com' : 'http://widgets.in.webengage.com') + '/js/webengage-min-v-6.0.js'), d.parentNode.insertBefore(f, d); }); } })(window, document, 'webengage'); webengage.init(licenseCode); var clevertap = { event: [], profile: [], region: 'in1', account: [], onUserLogin: [], notifications: [], privacy: [], }; clevertap.account.push({ id: '679-WZ9-4W6Z' }); (function() { var wzrk = document.createElement('script'); wzrk.type = 'text/javascript'; wzrk.async = true; wzrk.src = ('https:' == document.location.protocol ? 'https://d2r1yp2w7bby2u.cloudfront.net' : 'http://static.clevertap.com') + '/js/a.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(wzrk, s); })(); #webklipper-publisher-widget-container, #webklipper-publisher-widget-container * {overflow:visible; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline;}var s=document.createElement("link");s.href="https://www.google-analytics.com";s.rel="preconnect";s.setAttribute("crossorigin","");document.head.append(s);var dtfn=google_tag_manager["GTM-PNGHP4L"].macro(13),lurl=document.location.href,urlHost=document.location.host,referrerUrl=document.referrer,referrerHost=document.referrer.split("/")[2];function getParameterByName(a){var b=window.location.href;a=a.replace(/[\[\]]/g,"\\$\x26");a=new RegExp("[?\x26]"+a+"(\x3d([^\x26#]*)|\x26|#|$)");return(b=a.exec(b))?b[2]?decodeURIComponent(b[2].replace(/\+/g," ")):"":"NA"} var sourceutm=getParameterByName("utm_source"),mediumutm=getParameterByName("utm_medium"),campaignutm=getParameterByName("utm_campaign"),termutm=getParameterByName("utm_term"),contentutm=getParameterByName("utm_content"),idutm=getParameterByName("utm_id"),gclidutm=getParameterByName("gclid"),fbclidutm=getParameterByName("fbclid"); if("NA"!=sourceutm||"NA"!=mediumutm||"NA"!=campaignutm||"NA"!=termutm||"NA"!=contentutm||"NA"!=idutm)dtfn("gtm_url",lurl,7),dtfn("gtm_source",sourceutm,7),dtfn("gtm_medium",mediumutm,7),dtfn("gtm_campaign",campaignutm,7),dtfn("gtm_term",termutm,7),dtfn("gtm_content",contentutm,7),dtfn("gtm_id",idutm,7); "apollo247.com"!==referrerHost&&"covid.apollo247.com"!==referrerHost&&"securegw.paytm.in"!==referrerHost&&"securegw-stage.paytm.in"!==referrerHost&&"apollo247.onelink.me"!==referrerHost&&"apl247.onelink.me"!==referrerHost&&""!==referrerUrl&&referrerHost!=urlHost&&dtfn("gtm_referrer",referrerUrl,7); var dtlyr=dataLayer,evntdtlyr=dtlyr.map(function(a){return a=a.event}),pagvwexst=evntdtlyr.includes("pageviewEvent");pagvwexst||dataLayer.push({event:"pageviewEvent",pageName:"Others",pageLOB:"Others",pageType:"Others"}); var btn=document.getElementsByClassName("afb-download-button").length;if(btn!=0&&!("Others".indexOf("Listing Page")&gt0&&"Others"=="Consultation"))AF("banners","hideBanner");var dtfn=google_tag_manager["GTM-PNGHP4L"].macro(38); if("UserLoggedIn"=="UserLoggedIn"){var dataly=window.dataLayer;var datalylen=dataly.length;var chckind=-1;for(var j=datalylen-1;j&gt=0;j--)if(dataly[j]["event"]=="UserLoggedIn"){chckind=j;break}var runcode=chckind==-1?false:dataly[chckind-1]["event"]=="OTPValidation Failed"?false:true;if(runcode){if("96b1b5c1-698f-4d8a-a160-1cef1d5d1f53"==undefined||"96b1b5c1-698f-4d8a-a160-1cef1d5d1f53"==null||"96b1b5c1-698f-4d8a-a160-1cef1d5d1f53"=="null"||"96b1b5c1-698f-4d8a-a160-1cef1d5d1f53"=="undefined")if("Login"=="Login")dataLayer.push({"event":"Log In"}); else dataLayer.push({"event":"Registration"});dtfn("gtm_userid","96b1b5c1-698f-4d8a-a160-1cef1d5d1f53",30)}}else{dataLayer.push({"event":"Log Out"});dtfn("gtm_userid",null,30)}; Add New Family MemberImportant : You will not be able to edit these details once you have saved them!Full NameDate Of BirthGenderMaleFemaleOtherRelation​Email Address (Optional)CancelSaveBrotherCousinDaughterFatherGranddaughterGrandfatherGrandmotherGrandsonHusbandMeMotherOtherSisterSonWife<br>html tag=BODY<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (1 objects found)&nbsp;</FONT></u><br>
+micclass=WebElement<br>html tag=BODY<br>]]></Details>
+<Time><![CDATA[06-04-2022 - 12:55:42]]></Time>
+<TimeTick>1649229942</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="109" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA["<iframe src='https://www.googl"- Smart Identification]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T19">
+<Obj plainTxt="False" ><![CDATA[<iframe src='https://www.googl.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[06-04-2022 - 12:55:42]]></Time>
+<TimeTick>1649229942</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="110" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[<iframe src='https://www.googl.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T20">
+<Obj plainTxt="False" ><![CDATA[BrotherCousinDaughterFatherGra]]></Obj>
+<Details plainTxt="False" ><![CDATA[Cannot&nbsp;identify&nbsp;the&nbsp;object&nbsp;"BrotherCousinDaughterFatherGra"&nbsp;(of&nbsp;class&nbsp;WebList).<br/>Verify&nbsp;that&nbsp;this&nbsp;object's&nbsp;properties&nbsp;match&nbsp;an&nbsp;object&nbsp;currently&nbsp;displayed&nbsp;in&nbsp;your&nbsp;application.]]></Details>
+<Time><![CDATA[06-04-2022 - 12:56:03]]></Time>
+<TimeTick>1649229963</TimeTick>
+<Step rID="T21">
+<Obj plainTxt="False" ><![CDATA[BrotherCousinDaughterFatherGra]]></Obj>
+<Details plainTxt="False" ><![CDATA[Object's physical description:<br>Mercury Class = WebList<br>Html Tag = UL<br>_xpath = //DIV[@id="menu-"]/DIV[3]/UL[@role="listbox"][1]<br>|Visible Items = 15<br>Visible = -1<br>Name = select<br>Items Count = 15<br>Html Id = <br>first item = Brother<br>default value = <br>DHTML Class = aph-635-MuiList-root aph-635-MuiMenu-list aph-635-MuiList-padding<br>acc_name = <br>]]></Details>
+<Time><![CDATA[06-04-2022 - 12:56:03]]></Time>
+<TimeTick>1649229963</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="154" status="Warning" nType="Description" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[BrotherCousinDaughterFatherGra]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="10" nRep="153" status="Failed" nType="Run Error" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[BrotherCousinDaughterFatherGra]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="10" status="Failed" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Apollo]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="4" nRep="9" status="Failed" Source="Action1" SourceLine="-1" >
+<Disp><![CDATA[Apollo]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T22">
+<Obj plainTxt="False" ><![CDATA[Apollo]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[06-04-2022 - 12:56:03]]></Time>
+<TimeTick>1649229963</TimeTick>
+<Step rID="T23">
+<Obj plainTxt="False" ><![CDATA[Run Error]]></Obj>
+<Details plainTxt="False" ><![CDATA[Cannot identify the object &quot;BrotherCousinDaughterFatherGra&quot; (of class WebList).<BR/>Verify that this object's properties match an object currently displayed in your application.<BR/>Line (63): &quot;Browser(&quot;Apollo&quot;).Page(&quot;Apollo&quot;).WebList(&quot;BrotherCousinDaughterFatherGra&quot;).Select &quot;Daughter&quot;&quot;. ]]></Details>
+<Time><![CDATA[06-04-2022 - 12:56:03]]></Time>
+<TimeTick>1649229963</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="156" status="Failed" Source="Action1" SourceLine="62" >
+<Disp><![CDATA[Run Error]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T24">
+<Obj plainTxt="False" ><![CDATA[Stop Run]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run stopped by user.]]></Details>
+<Time><![CDATA[06-04-2022 - 12:56:05]]></Time>
+<TimeTick>1649229965</TimeTick>
+<NodeArgs eType="General" icon="12" nRep="157" status="Information" >
+<Disp><![CDATA[Stop Run]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="4" nRep="155" status="Failed" Source="Action1" SourceLine="62" >
+<Disp><![CDATA[Apollo]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="06-04-2022 - 12:54:59" eTime="06-04-2022 - 12:56:05" passed="0" failed="2" warnings="3" ></Summary>
+<NodeArgs eType="StartAction" icon="3" nRep="6" status="Failed" >
+<Disp><![CDATA[Action1 Summary]]></Disp>
+</NodeArgs>
+</Action>
+<Summary sTime="06-04-2022 - 12:54:58" eTime="06-04-2022 - 12:56:05" passed="0" failed="2" warnings="3" ></Summary>
+<NodeArgs eType="StartTest" icon="1" nRep="3" status="Failed" >
+<Disp><![CDATA[Test appnt Summary]]></Disp>
+</NodeArgs>
+</Doc>
+</Report>
